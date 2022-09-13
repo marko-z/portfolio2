@@ -1,0 +1,20 @@
+.listitem {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  color:rgb(209, 209, 209);
+  font-weight:bolder;
+  border: 2px solid rgb(39, 39, 39);
+  border-radius: 15px; 
+  width: auto;
+  /* overflow: hidden; */
+  /* transition: color 0.15s ease, border-color 0.15s ease; */
+  /* filter: blur(8px);
+  -webkit-filter: blur(8px); */
+}
+
+.listitem:hover,
+.listitem:focus,
+.listitem:active {
+  opacity: 0.5;
+}
