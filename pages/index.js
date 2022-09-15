@@ -14,9 +14,9 @@ export default function Home() {
       <div className={styles.main}>
         <div className={styles.container}>
           <ul className={styles.list}>
-            <Entry className={styles.listitem} imgsrc={'picsum.photos/200/300'} text1={'Joe'} text2={'Biden'} href={'/entries/sample'} />
-            <Entry className={styles.listitem} imgsrc={'picsum.photos/200/300'} text1={'Rebecca'} text2={'Black'} href={''}/>
-            <Entry className={styles.listitem} imgsrc={'picsum.photos/200/300'} text1={'Jack'} text2={'Sparrow'} href={''}/>
+            <Entry className={styles.listitem} imgsrc={'/images/1.jpg'} text1={'Joe'} text2={'Biden'} href={'/entries/sample'} />
+            <Entry className={styles.listitem} imgsrc={'/images/2.jpg'} text1={'Rebecca'} text2={'Black'} href={''}/>
+            <Entry className={styles.listitem} imgsrc={'/images/3.jpg'} text1={'Jack'} text2={'Sparrow'} href={''}/>
           </ul>
         </div>
         <div className={styles.container}>

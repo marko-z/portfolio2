@@ -1,16 +1,23 @@
 .listitem {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  color:rgb(209, 209, 209);
-  font-weight:bolder;
-  border: 2px solid rgb(39, 39, 39);
-  border-radius: 15px; 
+  margin: 1rem 0rem;
   width: auto;
+  min-height: 80px;
+  border: 2px solid rgb(39,39,39);
+  border-radius: 12px;
+  background-size: 100% auto;
+
+  padding: 0.8rem;
+  font-weight: bolder;
   /* overflow: hidden; */
   /* transition: color 0.15s ease, border-color 0.15s ease; */
   /* filter: blur(8px);
   -webkit-filter: blur(8px); */
+}
+
+.listitem .code {
+  font-size:larger;
+  color: rgb(218, 218, 218);
+  mix-blend-mode: difference;
 }
 
 .listitem:hover,
