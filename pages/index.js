@@ -2,7 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Entry from '../components/Entry/Entry.js'
-export default function Home() {
+import matter from 'gray-matter'
+import fs from 'fs'
+import path from 'path'
+import { useEffect } from 'react'
+export default function Index({ entries }) {
   return (
     <>
       <Head>
@@ -12,21 +16,93 @@ export default function Home() {
       </Head>
 
       <div className={styles.main}>
+        {/* <div style={{width: '30px', borderRadius: '5px', overflow: 'hidden'}}>
+          <Image src={'/images/WICKED.png'} layout='fill' objectFit='contain'/>
+        </div> */}
+        <div className={styles.container}>
+          <div className={styles.postCard}>
+            <div className={styles.text}>
+              <h1>Marek Zakrzewski</h1>
+              <p>
+                Have a look at my warez
+              </p>
+            </div>
+
+            <div className={styles.profileImageContainer}>
+              <Image
+                src="/images/WICKED.png"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+          </div>
+        </div>
         <div className={styles.container}>
           <ul className={styles.list}>
-            <Entry className={styles.listitem} imgsrc={'/images/1.jpg'} text1={'Joe'} text2={'Biden'} href={'/entries/sample'} />
-            <Entry className={styles.listitem} imgsrc={'/images/2.jpg'} text1={'Rebecca'} text2={'Black'} href={''}/>
-            <Entry className={styles.listitem} imgsrc={'/images/3.jpg'} text1={'Jack'} text2={'Sparrow'} href={''}/>
+            {entries.map((entry) => {
+              return <Entry
+                key={entry.id}
+                title={entry.metadata.title}
+                summary={entry.metadata.summary}
+                imgsrc={entry.metadata.imgsrc}
+                href={`/entries/${entry.id}`}
+                />
+            })}
           </ul>
         </div>
-        <div className={styles.container}>
-          <div className={styles.description}>Regular div text</div>
-        </div>
       </div>
-
       <footer className={styles.footer}>
         Marek Zakrzewski
       </footer>
     </>
   )
+}
+
+export async function getStaticProps() {
+  // apparently you can't access imported module properties before you've resolved it as a promise
+  // this is some time-consuming debugging right here
+  const filenames = fs.readdirSync(path.resolve(process.cwd(), 'pages', 'entries'))
+  const metadata = await Promise.all(filenames.map(async (filename) => [await require(`./entries/${filename}`), filename.replace(/\.mdx$/,'')]))
+  const entries = metadata.map(([moduleExport, moduleName]) => ({metadata: moduleExport.meta, id: moduleName}))
+
+  // const entryModules = await Promise.all(
+  //   filenames.map(async (filename) => [import(`./entries/${filename}`), filename.replace(/\.mdx$/,'')])
+  // )
+  // const postData = entryModules.map(([m,id]) => ({ metadata: m.meta ? m.meta : null, id}));
+  
+  return {
+    props: {
+      entries
+    },
+  }
+
+
+
+  // matter doesnt parse mdx files properly
+
+  // const filenames = fs.readdirSync(path.resolve(process.cwd(),'pages','entries'));
+  // const postData = filenames.map((filename) => {
+  //   const id = filename.replace(/\.mdx$/,'');
+
+  //   const filepath = path.resolve(process.cwd(),'pages','entries', filename)
+    
+  //   const filedata = fs.readFileSync(filepath,{encoding: 'utf8'})
+  //   const matterResult = matter(filedata)
+  //   console.log('\n\n\n')
+  //   console.log(JSON.stringify(matterResult))
+  //   console.log('\n\n\n')
+  //   return {
+  //     id,
+  //     metadata: matterResult.data
+  //   }
+    
+  // })
+  // console.log(typeof postData)
+  // console.log(postData)
+  // return {
+  //   props: {
+  //     postData: postData
+  //   }
+  // };
+
 }

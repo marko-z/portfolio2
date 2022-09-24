@@ -1,7 +1,7 @@
 .main {
   /* min-height: 100vh; */
   max-width: 800px;
-  /* padding: 4rem 0; */
+  padding: 2rem 2rem;
   /* flex: 1; */
   display: flex;
   margin: 0 auto;
@@ -10,98 +10,42 @@
   align-items: center;
 }
 
+.profileImageContainer {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  border-radius: 75px;
+  background-color: rgb(97, 1, 1);
+  overflow:visible;
+  flex-grow:1;
+}
+
+.text {
+  flex-grow: 2;
+}
+
+.postCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 1rem;
+  background-color:rgb(22, 22, 22);
+  border-radius: 20px;
+
+}
 .container {
   align-items: center;
-  margin: 1rem 1rem;
   width: 100%;
 }
 
 .list {
   list-style: none;
-  padding: 0 1rem;
+  padding:0rem 0rem;
   /* display: inline-block;
   justify-content: center; */
   width: auto; 
 }
 
-
-
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-/* .title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
-
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-} */
 
 @media (max-width: 600px) {
   .grid {
@@ -116,7 +60,7 @@
     border-color: #222;
   }
   .code {
-    background: #111;
+    background: rgb(59, 59, 59);
   }
   .logo img {
     filter: invert(1);

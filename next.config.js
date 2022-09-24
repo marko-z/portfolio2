@@ -9,20 +9,14 @@ const withImages = require('next-images')
 // next.config.js
 
 const withMDX = require('@next/mdx')({
+  // By default only the .mdx extension is supported.
   extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-    // If you use `MDXProvider`, uncomment the following line.
-    providerImportSource: "@mdx-js/react",
-  },
+  options: {providerImportSource: '@mdx-js/react',  /* otherOptions… */}
 })
-
-// const withMDX = require('@next/mdx')
 
 module.exports = withPlugins([
   [withMDX, {
-    pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+    pageExtensions: ['md', 'mdx', 'tsx', 'ts', 'jsx', 'js'],
   }],
   [withImages]],
   {
