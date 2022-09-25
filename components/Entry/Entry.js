@@ -2,7 +2,8 @@ import styles from './Entry.module.css'
 import Link from 'next/link'
 export default function Entry(props) {
   return <Link href={props.href}>
-          <li style={{ backgroundImage: `url(${props.imgsrc})` }} className={styles.listitem}>
+          <li className={styles.listitem}>
+            <div className={styles.backgroundImage} style={{ backgroundImage: `url(${props.imgsrc})`}}></div>
             <span className={styles.code}>{props.title} {props.summary}</span>
           </li>
         </Link>
