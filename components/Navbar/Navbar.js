@@ -2,17 +2,25 @@ import Link from "next/link"
 
 const navbarLinks = [
   ['My apps', '#apps'],
-  ['Work Experience', '#experience'],
-  ['Education', '#education'],
+  ['Experience', '#experience'],
   ['Skills', '#skills'],
-  ['Certifications', '#certifications']
+  ['Education & Certifications', '#education'],
 ]
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 w-full h-20 z-10 flex justify-around bg-black">
-        {navbarLinks.map(([name, link], index) => {
-          return <Link  key={index} href={link}><div className="h-full flex flex-col justify-center items-center">{name}</div></Link>
-        })} 
+    <nav className="fixed top-0 left-0 w-full h-16 z-10 flex justify-around bg-black overflow-hidden">
+    <Link href="#main">
+      <div className="relative h-full flex flex-col justify-center items-center">
+        <div className="text-lg z-10">Marek Zakrzewski</div>
+        <div className="absolute bottom-4 right-2 w-32 h-10 bg-gray-900 z-0"></div>
+      </div>
+      </Link>
+    {navbarLinks.map(([name, link], index) => {
+      return <Link  key={index} href={link}><div className="h-full flex flex-col justify-center items-center text-base">{name}</div></Link>
+    })} 
+    <Link href="#contact"><div className="h-full flex flex-col justify-center items-center">
+      <div className="h-1/2 w-20 rounded-2xl bg-yellow-500 flex items-center justify-center"><div className="text-yellow-900 font-bold">Contact</div></div>
+      </div></Link>
     </nav>
   )
 }

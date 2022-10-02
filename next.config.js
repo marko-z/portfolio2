@@ -1,4 +1,5 @@
 const withPlugins = require('next-compose-plugins')
+// @ts-ignore
 const withImages = require('next-images')
 // /** @type {import('next').NextConfig} */
 
