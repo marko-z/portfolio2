@@ -17,61 +17,64 @@ export default function Index({ entries }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <div className="p-8 sm:p-24">
-        {/* <div style={{width: '30px', borderRadius: '5px', overflow: 'hidden'}}>
+      <div className="p-8 sm:p-24  bg-gradient-to-br from-gray-800 to-black">
+        <div className="mx-auto max-w-6xl">
+          {/* <div style={{width: '30px', borderRadius: '5px', overflow: 'hidden'}}>
           <Image src={'/images/WICKED.png'} layout='fill' objectFit='contain'/>
         </div> */}
-        <div className="flex justify-between">
-          <div className="flex flex-col">
-            <div className="text-[4rem] sm:text-[6rem]">
-              Marek Zakrzewski
+          <div className="flex justify-between">
+            <div className="flex flex-col">
+              <div className="text-[4rem] sm:text-[6rem]">
+                Marek Zakrzewski
+              </div>
+              <div className="text-[2rem] text-gray-500">
+                Developer
+              </div>
             </div>
-            <div className="text-[2rem] text-gray-500">
-              Developer
+            <div className="relative w-64 h-64">
+              <Image
+                alt="wicked"
+                src="/images/WICKED.png"
+                layout="fill"
+                objectFit="contain"
+              />
             </div>
           </div>
-          <div className="relative w-64 h-64">
-            <Image
-              alt="wicked"
-              src="/images/WICKED.png"
-              layout="fill"
-              objectFit="contain"
-            />
+
+          <div id="apps">
+            <div className="py-2 text-header">Have a look at some of my apps</div>
+            <div className="grid w-fit grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+              {entries.map((entry, index) => {
+                return (
+                  <div key={index} className="h-60 w-60 rounded-xl flex flex-col shadow-2xl bg-gray-800 overflow-hidden">
+                    <div className="relative w-full h-3/4">
+                      <Image alt='app image' src={entry.metadata.imgsrc} layout="fill" objectFit="cover" />
+                    </div>
+                    <div className="w-full h-1/4 p-4 text-[1rem]">
+                      {entry.metadata.title}
+                    </div>
+                  </div>
+                )
+
+                // <Entry
+                //   key={entry.id}
+                //   title={entry.metadata.title}
+                //   summary={entry.metadata.summary}
+                //   imgsrc={entry.metadata.imgsrc}
+                //   href={`/entries/${entry.id}`}
+                // />
+              })}
+            </div>
+            <div className={styles.container}>
+              <ul className={styles.list}>
+              </ul>
+            </div>
           </div>
-        </div>
-        
-        <div id="apps">
-        <div className="grid w-fit grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-            {entries.map((entry,index) => {
-              return (
-                <div key={index} className="h-60 w-60 rounded-xl flex flex-col shadow-2xl bg-gray-900 overflow-hidden">
-                  <div className="relative w-full h-3/4">
-                    <Image alt='app image' src={entry.metadata.imgsrc} layout="fill" objectFit="cover" />
-                  </div>
-                  <div className="w-full h-1/4 p-4 text-[1rem]">
-                    {entry.metadata.title}
-                  </div>
-                </div>
-              )
-              
-              // <Entry
-              //   key={entry.id}
-              //   title={entry.metadata.title}
-              //   summary={entry.metadata.summary}
-              //   imgsrc={entry.metadata.imgsrc}
-              //   href={`/entries/${entry.id}`}
-              // />
-            })}
-        </div>
-        <div className={styles.container}>
-          <ul className={styles.list}>
-          </ul>
-        </div>
-        </div>
-      </div>
       <footer className={styles.footer}>
         Marek Zakrzewski
       </footer>
+        </div>
+      </div>
     </>
   )
 }
