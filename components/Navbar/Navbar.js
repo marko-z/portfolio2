@@ -8,7 +8,7 @@ const navbarLinks = [
 ]
 export default function Navbar() {
   return (
-    <nav className="fixed backdrop-filter  backdrop-blur-3xl top-0 left-0 w-full h-16 z-10 ">
+    <nav className="fixed backdrop-filter bg-gray-800 bg-opacity-80 backdrop-blur-md top-0 left-0 w-full h-16 z-10 ">
       <div className="mx-auto  h-full max-w-6xl flex justify-around overflow-hidden">
         {/* <Link href="#main">
       <div className="relative h-full flex flex-col justify-center items-center">
@@ -20,7 +20,7 @@ export default function Navbar() {
           return <Link key={index} href={link}><div className="h-full flex flex-col justify-center items-center text-base">{name}</div></Link>
         })}
         <Link href="#contact"><div className="h-full flex flex-col justify-center items-center">
-          <div className="h-1/2 w-20 rounded-2xl bg-yellow-500 flex items-center justify-center"><div className="text-yellow-900 font-bold">Contact</div></div>
+          <div className="p-3 rounded-xl bg-gray-500 bg-opacity-30 flex items-center justify-center hover:bg-opacity-60"><div className="font-bold">Get in touch!</div></div>
         </div></Link>
       </div>
     </nav>
