@@ -65,11 +65,12 @@ export default function Index({ entries }) {
                 // />
               })}
             </div>
-            <div className={styles.container}>
-              <ul className={styles.list}>
-              </ul>
-            </div>
           </div>
+          <div id="experience" className="my-12 text-header">Experience</div>
+          <div id="experience" className="my-12 text-header">Skills</div>
+          <div id="experience" className="my-12 text-header">Education</div>
+          <div id="experience" className="my-12 text-header">Certifications</div>
+
       <footer className={styles.footer}>
         Marek Zakrzewski
       </footer>
