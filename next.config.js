@@ -22,15 +22,11 @@ module.exports = withPlugins([
   [withImages]],
   {
     images: {
-      domains: ['picsum.photos']
+      domains: ['picsum.photos', 'images.ctfassets.net' ]
       // remotePatterns: {
       //   protocol: 'https',
       //   hostname: 'picsum.photos'
       // }
     },
-    env: {
-      spaceId: '1uqcab2yeci1',
-      accessToken: 'YD8hkdmeGr11TSzuHODTBJXbX-C6exJRKHifFBbH30U'
-    }
   }
 )

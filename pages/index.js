@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Entry from '../components/Entry/Entry.js'
-import path from 'path'
-import fs from 'fs'
 import { useEffect } from 'react'
 import Navbar from '../components/Navbar/Navbar'
+import client from '../apollo-client.js'
+import { gql } from '@apollo/client'
 
 
 export default function Index({ entries }) {
@@ -48,10 +47,10 @@ export default function Index({ entries }) {
                 return (
                   <div key={index} className="h-60 w-60 rounded-xl flex flex-col shadow-2xl bg-gray-800 overflow-hidden">
                     <div className="relative w-full h-3/4">
-                      <Image alt='app image' src={entry.metadata.imgsrc} layout="fill" objectFit="cover" />
+                      <Image alt='app image' src={entry.thumbnail.url} layout="fill" objectFit="cover" />
                     </div>
                     <div className="w-full h-1/4 p-4 text-[1rem]">
-                      {entry.metadata.title}
+                      {entry.title}
                     </div>
                   </div>
                 )
@@ -81,50 +80,30 @@ export default function Index({ entries }) {
 }
 
 export async function getServerSideProps() {
-  // apparently you can't access imported module properties before you've resolved it as a promise
-  // this is some time-consuming debugging right here
-  const filenames = fs.readdirSync(path.resolve(process.cwd(), 'pages', 'entries'))
-  const metadata = await Promise.all(filenames.map(async (filename) => [await require(`./entries/${filename}`), filename.replace(/\.mdx$/, '')]))
-  const entries = metadata.map(([moduleExport, moduleName]) => ({ metadata: moduleExport.meta, id: moduleName }))
-
-  // const entryModules = await Promise.all(
-  //   filenames.map(async (filename) => [import(`./entries/${filename}`), filename.replace(/\.mdx$/,'')])
-  // )
-  // const postData = entryModules.map(([m,id]) => ({ metadata: m.meta ? m.meta : null, id}));
-  // 
+  const { data } = await client.query({
+    query: gql`
+    query {
+      appDescriptionCollection {
+        items {
+          title
+          shortDescription
+          fullDescription
+          thumbnail {
+            url
+          }
+          gitHubLink
+          hostedLink
+        }
+      }
+    }
+    `
+  })
+  const items = data.appDescriptionCollection.items
+  console.log(items)
   return {
     props: {
-      entries: entries
-    },
+      entries: items
+    }
   }
-
-
-
-  // matter doesnt parse mdx files properly
-
-  // const filenames = fs.readdirSync(path.resolve(process.cwd(),'pages','entries'));
-  // const postData = filenames.map((filename) => {
-  //   const id = filename.replace(/\.mdx$/,'');
-
-  //   const filepath = path.resolve(process.cwd(),'pages','entries', filename)
-
-  //   const filedata = fs.readFileSync(filepath,{encoding: 'utf8'})
-  //   const matterResult = matter(filedata)
-  //   console.log('\n\n\n')
-  //   console.log(JSON.stringify(matterResult))
-  //   console.log('\n\n\n')
-  //   return {
-  //     id,
-  //     metadata: matterResult.data
-  //   }
-
-  // })
-  // console.log(typeof postData)
-  // console.log(postData)
-  // return {
-  //   props: {
-  //     postData: postData
-  //   }
-  // };
 
 }
