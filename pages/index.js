@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import Navbar from '../components/Navbar/Navbar'
 import client from '../apollo-client.js'
 import { gql } from '@apollo/client'
+import Entry from '../components/Entry/Entry'
 
 
 export default function Index({ entries }) {
@@ -44,24 +45,7 @@ export default function Index({ entries }) {
             <div className="py-2 text-header">Have a look at some of my apps</div>
             <div className="grid w-fit grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
               {entries.map((entry, index) => {
-                return (
-                  <div key={index} className="h-60 w-60 rounded-xl flex flex-col shadow-2xl bg-gray-800 overflow-hidden">
-                    <div className="relative w-full h-3/4">
-                      <Image alt='app image' src={entry.thumbnail.url} layout="fill" objectFit="cover" />
-                    </div>
-                    <div className="w-full h-1/4 p-4 text-[1rem]">
-                      {entry.title}
-                    </div>
-                  </div>
-                )
-
-                // <Entry
-                //   key={entry.id}
-                //   title={entry.metadata.title}
-                //   summary={entry.metadata.summary}
-                //   imgsrc={entry.metadata.imgsrc}
-                //   href={`/entries/${entry.id}`}
-                // />
+                return <Entry key={index} entry={entry} />
               })}
             </div>
           </div>
@@ -70,9 +54,9 @@ export default function Index({ entries }) {
           <div id="experience" className="my-12 text-header">Education</div>
           <div id="experience" className="my-12 text-header">Certifications</div>
 
-      <footer className={styles.footer}>
-        Marek Zakrzewski
-      </footer>
+          <footer className={styles.footer}>
+            Marek Zakrzewski
+          </footer>
         </div>
       </div>
     </>
